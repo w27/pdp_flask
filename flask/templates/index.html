@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Login Page</title>
+</head>
+<body id="ttt">
+
+<table width="20%" bgcolor="#1E90FF" align="center">
+
+    <tr>
+        <td colspan=2>
+            <center><font size=4><b>Login Page</b></font></center>
+        </td>
+    </tr>
+
+    <tr>
+        <td>Username:</td>
+        <td><input type="text" size=25 id="userid"></td>
+    </tr>
+
+    <tr>
+        <td>Password:</td>
+        <td><input type="Password" size=25 id="pwd"></td>
+    </tr>
+
+    <tr>
+        <td><!--<input type="Reset">--></td>
+        <td><input type="submit" onclick="check(this.form)" value="Login"></td>
+    </tr>
+
+</table>
+
+<script language="javascript">
+
+    function check(form) {
+
+        let xhr = new XMLHttpRequest();
+        let url = "http://127.0.0.1:5000/testing";
+
+        var user = document.getElementById("userid").value
+        var pass = document.getElementById("pwd").value
+
+        xhr.open("POST", url, true);
+        xhr.setRequestHeader("Content-Type", "application/json");
+
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState === 4 && xhr.status === 200) {
+                document.getElementById("ttt").innerHTML = this.responseText
+            }
+        };
+        var data = JSON.stringify({"username": user, "password": pass});
+
+        // Sending data with the request
+        xhr.send(data);
+
+
+    }
+</script>
+
+</body>
+</html>
