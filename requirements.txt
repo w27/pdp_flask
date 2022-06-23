@@ -3,3 +3,5 @@ psycopg2-binary
 Flask
 Flask-JWT-Extended
 flask-restful
+pytest
+pytest-cov
