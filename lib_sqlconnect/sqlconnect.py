@@ -24,6 +24,9 @@ class SQLConnect:
 
     def add(self, obj):
         self.session.add(obj)
+    
+    def delete(self, obj):
+        self.session.delete(obj)
 
     def commit(self):
         self.session.commit()
