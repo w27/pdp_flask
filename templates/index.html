@@ -3,8 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <title>FlaskApp</title>
+    <script src={{ url_for('static', filename="script.js") }}></script>
 </head>
 <body>
-    <h1>Hello World!</h1>
+    <dev id="main">
+        <p><strong>Логин:</strong> 
+        <input id="login" maxlength="25" size="40" name="login"></p>
+        <p><strong>Пароль:</strong> 
+        <input id="password" type="password" maxlength="25" size="40" name="password"></p>
+        <p>
+            <button type="submit"
+                class='input_submit'
+                style="margin-right: 30px;"
+                onClick="login()">Войти
+            </button>
+        </p>
+    </dev>
+    <dev id="body">
+
+    </dev>
 </body>
 </html>

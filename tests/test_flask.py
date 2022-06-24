@@ -30,7 +30,7 @@ headers = {
 
 def test_base_route():
     response = client.get('/')
-    assert b"Hello World!" in response.get_data()
+    assert b"DOCTYPE html" in response.get_data()
     assert response.status_code == 200
 
 def test_base_courses_get():
