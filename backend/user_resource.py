@@ -60,7 +60,7 @@ class UserResource(Resource):
 
         self.sql_conn.commit()
 
-        return {'course task': user.json()}
+        return {'user': user.json()}
 
     def delete(self, _id):
         user = self.sql_conn.get(User, 'id', _id, True)
