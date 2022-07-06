@@ -7,11 +7,13 @@ from flask_restful import Api
 from course_resource import CourseList, CourseResource
 from task_resource import CourseTaskResource, CourseTaskList
 from user_resource import UserResource, UserLogin
+from flask_cors import CORS
 
 import os
 
 
 app = Flask(__name__)
+CORS(app)
 # app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///data.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.secret_key = 'dimka'
