@@ -8,13 +8,13 @@ export const ax = axios.create({
 
 export const useAx = () => {
   const { token } = useContext(AuthContext);
+
   const ax = axios.create({
     baseURL: "http://localhost:5000",
-    headers: token
-      ? {
-          Authorization: `Bearer ${token}`,
-        }
-      : {},
+    headers: {
+      Authorization: token ? `Bearer ${token}` : "",
+      "Content-Type": "application/json",
+    },
   });
   ax.interceptors.response.use(
     (r) => {

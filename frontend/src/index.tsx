@@ -7,6 +7,7 @@ import { Courses } from "./Courses";
 import "./index.css";
 import { IndexPage } from "./IndexPage";
 import { Login } from "./Login";
+import { NewCourse } from "./NewCourse";
 import reportWebVitals from "./reportWebVitals";
 
 const root = ReactDOM.createRoot(
@@ -28,6 +29,7 @@ root.render(
         <Route path="/" element={<IndexPage />}></Route>
         <Route path="login" element={<Login />}></Route>
         <Route path="courses" element={<Courses />}></Route>
+        <Route path="course/new" element={<NewCourse />}></Route>
         <Route path="course/:courseSlug" element={<Course />}></Route>
       </Routes>
     </BrowserRouter>

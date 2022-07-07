@@ -1,16 +1,16 @@
-import { Box, Button, Card, Typography } from "@mui/material";
+import { Box, Button, Card, CardActionArea, Typography } from "@mui/material";
 import { useEffect, useState } from "react";
 import { useAx } from "./axios";
 import { TCourse } from "./types";
+import EditIcon from "@mui/icons-material/Edit";
+import AddIcon from "@mui/icons-material/Add";
+import { Navigate, useNavigate } from "react-router-dom";
+import { useStorage } from "./useStorage";
 
 export const Courses = () => {
+  const navigate = useNavigate();
   const ax = useAx();
-  const [courses, setCourses] = useState<TCourse[]>([]);
-  useEffect(() => {
-    ax.get("/courses").then((r) => {
-      setCourses(r.data["course list"]);
-    });
-  }, [setCourses]);
+  const [data, setData] = useStorage();
   return (
     <Box
       display="flex"
@@ -20,24 +20,40 @@ export const Courses = () => {
       justifyContent="flex-start"
       alignItems={"flex-start"}
     >
-      <Typography my={3} variant="h3">
-        Курсы
-      </Typography>
-      {courses?.map((c) => (
+      <Card
+        sx={{ margin: 1, width: 500, display: "flex", background: "#0d46a0" }}
+        onClick={() => {
+          navigate("/course/new");
+        }}
+      >
+        <CardActionArea sx={{ display: "flex" }}>
+          <Typography color="white" flex={1} m={2}>
+            Создать курс
+          </Typography>
+          <Box mx={2.5}>
+            <AddIcon sx={{ color: "white" }} />
+          </Box>
+        </CardActionArea>
+      </Card>
+      {data.courses.map((c) => (
         <Card
           key={c.key}
           sx={{ margin: 1, width: 500, display: "flex" }}
-          onClick={() => {}}
+          onClick={() => {
+            navigate(`/course/${c.slug_name}`);
+          }}
         >
-          <Typography flex={1} variant="h6" m={2}>
-            {c.name}
-          </Typography>
+          <CardActionArea sx={{ display: "flex" }}>
+            <Typography flex={1} m={2}>
+              {c.name}
+            </Typography>
+          </CardActionArea>
           <Button
-            onClick={() => {
-              window.location.href = `/course/${c.slug_name}`;
+            onClick={(e) => {
+              // window.location.href = `/course/${c.slug_name}`;
             }}
           >
-            Проходить
+            <EditIcon />
           </Button>
         </Card>
       ))}
